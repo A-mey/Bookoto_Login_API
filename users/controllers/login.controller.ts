@@ -22,6 +22,7 @@ class UsersController {
     async sendOTP(req: express.Request, res: express.Response) {
         let emailId = req.body.EMAILID;
         const otpObject: OtpObject = await otpService.createOTP(emailId);
+        console.log("otpObject", otpObject.fullHash)
         await otpService.sendOtpMail(emailId, otpObject.otp);
         res.status(200).send({fullHash: otpObject.fullHash});
     }
@@ -31,13 +32,13 @@ class UsersController {
         res.status(200).send(validation);
     }
 
-    async createUser(req: express.Request, res: express.Response) {
-        let emailId = req.body.EMAILID;
-        let password = req.body.password;
-        let encryptedPill: Pill = await loginService.encryptData(emailId, password);
-        let data = await loginService.storeUserData(emailId, encryptedPill);
-        res.status(200).send(data);
-    }
+    // async createUser(req: express.Request, res: express.Response) {
+    //     let emailId = req.body.EMAILID;
+    //     let password = req.body.password;
+    //     let encryptedPill: Pill = await loginService.encryptData(emailId, password);
+    //     let data = await loginService.storeUserData(emailId, encryptedPill);
+    //     res.status(200).send(data);
+    // }
 
 
 }

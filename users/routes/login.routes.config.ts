@@ -23,12 +23,12 @@ export class LoginRoutes extends CommonRoutesConfig {
                 validate({ body: LoginSchema.validateOTPSchema }),
                 LoginController.validateOTP
             );
-        this.app.route('/registerUser')
-            .post(
-                validate({ body: LoginSchema.registerUserSchema }),
-                LoginMiddleware.checkExistingUser,
-                LoginController.createUser
-            )
+        // this.app.route('/registerUser')
+        //     .post(
+        //         validate({ body: LoginSchema.registerUserSchema }),
+        //         LoginMiddleware.checkExistingUser,
+        //         LoginController.createUser
+        //     )
         return this.app;
     }
 }

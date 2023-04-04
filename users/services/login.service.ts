@@ -33,13 +33,13 @@ class LoginService {
         return data;
     }
 
-    async storeUserData(emailId: string, encryptedData: Pill) {
-        let data = {
-            EMAILID: emailId,
-            ENCRYPTEDDATA: encryptedData
-        }
-        let response = HttpRequestService.postRequest(data);
-    }
+    // async storeUserData(emailId: string, encryptedData: Pill) {
+    //     let data = {
+    //         EMAILID: emailId,
+    //         ENCRYPTEDDATA: encryptedData
+    //     }
+    //     // let response = HttpRequestService.postRequest(data);
+    // }
 }
 
 export default new LoginService();

@@ -1,6 +1,4 @@
 import otpGenerator from 'otp-generator';
-// const crypto       = require("crypto");
-import crypto from 'crypto';
 import {OtpObject} from '../interfaces/otpObject.interface'
 import NodeMailer from './mailer.services';
 import EncryptionService from './encryption.services';
@@ -17,7 +15,7 @@ class OtpService {
         const expires = Date.now() + ttl; //timestamp to 5 minutes in the future
         const data = `${emailId}.${otp}.${expires}`; // phone.otp.expiry_timestamp
         // const hash = crypto.createHmac("sha256",key).update(data).digest("hex"); 
-        const hash = EncryptionService.hmac(key, data) // creating SHA256 hash of the data
+        const hash = await EncryptionService.hmac(key, data) // creating SHA256 hash of the data
         const fullHash:string = `${hash}.${expires}`; // Hash.expires, format to send to the user
         let otpObj: OtpObject = {
             otp: otp,
